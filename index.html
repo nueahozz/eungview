@@ -15,7 +15,7 @@
       background-color: #1e1e1e;
       color: #d4d4d4;
       margin: 0;
-      padding: 15px; /* 모바일 여백 최적화 */
+      padding: 15px; /* 모바일 대응 패딩 축소 */
       letter-spacing: -0.3px;
       line-height: 1.6;
     }
@@ -32,7 +32,7 @@
 
     .page-title-input {
       font-family: inherit;
-      font-size: 1.6rem; /* 모바일 가독성을 위해 살짝 축소 */
+      font-size: 1.6rem;
       font-weight: 700;
       border: none;
       background: transparent;
@@ -55,18 +55,16 @@
     /* 입력 폼 스타일 */
     .review-form {
       background-color: #252526;
-      padding: 15px; /* 패딩 축소 */
+      padding: 20px;
       margin-bottom: 25px;
       border-radius: 4px;
     }
 
     .form-group { margin-bottom: 15px; }
+    .form-row { display: flex; flex-direction: column; gap: 0; } /* 모바일 기본 세로 배치 */
     
-    /* 기본 모바일 레이아웃: 세로 정렬 */
-    .form-row { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 0; 
+    @media (min-width: 600px) {
+      .form-row { flex-direction: row; gap: 20px; }
     }
 
     label {
@@ -84,7 +82,8 @@
       padding: 10px;
       font-family: inherit;
       font-size: 0.9rem;
-      border-radius: 4px;
+      border-radius: 0;
+      -webkit-appearance: none; /* iOS 기본 스타일 제거 */
     }
 
     input:focus, select:focus, textarea:focus {
@@ -95,27 +94,28 @@
     /* 별점 스타일 */
     .star-rating {
       display: flex;
-      gap: 8px; /* 터치 영역 확보 */
-      font-size: 1.5rem; /* 모바일에서 누르기 편하게 크기 확대 */
-      padding: 5px 0;
+      gap: 5px;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
     }
     .star { cursor: pointer; color: #555; }
     .star.active { color: #dcdcaa; }
 
     /* 버튼 스타일 */
     .btn {
-      width: 100%; /* 모바일에서 누르기 편하게 전체 너비 적용 */
       background-color: #007acc;
       border: none;
       color: #ffffff;
-      padding: 12px;
+      padding: 12px 20px;
       cursor: pointer;
       font-family: inherit;
       font-weight: bold;
-      border-radius: 4px;
-      font-size: 0.95rem;
+      width: 100%; /* 모바일에서 터치하기 쉽게 풀사이즈 */
     }
-    .btn:hover { background-color: #0062a3; }
+    
+    @media (min-width: 600px) {
+      .btn { width: auto; }
+    }
     
     .btn-sm {
       padding: 6px 12px;
@@ -125,10 +125,10 @@
       border: none;
       cursor: pointer;
       font-family: inherit;
-      border-radius: 4px;
     }
+    .btn-sm:hover { background-color: #4e4e4e; color: #fff; }
 
-    /* 필터 및 검색 제어 영역 */
+    /* 필터 제어 영역 */
     .filter-container {
       background-color: #252526;
       padding: 15px;
@@ -137,34 +137,39 @@
     }
     .filter-row {
       display: flex;
-      flex-direction: column; /* 세로 정렬 */
+      flex-direction: column;
       gap: 12px;
+    }
+    @media (min-width: 600px) {
+      .filter-row { flex-direction: row; align-items: center; }
     }
     .filter-group {
       display: flex;
-      flex-direction: column; /* 라벨과 셀렉트 박스 세로 배치 */
-      gap: 6px;
+      align-items: center;
+      gap: 8px;
       font-size: 0.85rem;
     }
     .filter-group label {
       color: #569cd6;
+      margin-bottom: 0;
+      white-space: nowrap;
     }
     .filter-select, .search-input {
       background-color: #1e1e1e;
       border: 1px solid #3c3c3c;
       color: #d4d4d4;
-      padding: 8px;
+      padding: 6px 8px;
       font-family: inherit;
-      font-size: 0.9rem;
-      border-radius: 4px;
-      width: 100%;
+      flex: 1;
     }
-    .search-input {
-      color: #ce9178;
+    @media (min-width: 600px) {
+      .filter-select { flex: none; }
+      .search-input { width: 200px; }
+      .filter-group.search-box { margin-left: auto; }
     }
 
-    /* 하이라이팅 색상 */
-    .code-comment { color: #6a9955; word-break: break-all; }
+    /* 코드 블록 하이라이팅 태그 */
+    .code-comment { color: #6a9955; }
     .code-keyword { color: #569cd6; }
     .code-key { color: #9cdcfe; }
     .code-string { color: #ce9178; }
@@ -181,22 +186,47 @@
 
     .card-header {
       display: flex;
-      flex-direction: column; /* 모바일에서 타이틀과 버튼 세로 배치 */
-      align-items: flex-start;
+      flex-direction: column;
       gap: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       padding-bottom: 10px;
       border-bottom: 1px solid #3c3c3c;
     }
-    .card-header .btn-sm {
-      width: 100%; /* 모바일에서 추가 버튼 너비 확장 */
-      text-align: center;
+    @media (min-width: 600px) {
+      .card-header { flex-direction: row; justify-content: space-between; align-items: center; }
     }
 
-    .content-title { font-size: 1.1rem; margin: 0; font-weight: bold; color: #ffffff; word-break: break-all; }
+    .card-header .code-line {
+      text-align: left; /* 좌측 정렬 보장 */
+    }
 
+    .content-title { 
+      font-size: 1.15rem; 
+      margin: 0; 
+      font-weight: bold; 
+      color: #ffffff;
+      display: block;
+      margin-top: 4px;
+    }
+
+    /* 스코어, 최애캐 영역 모바일 정렬 수정 */
+    .meta-info-row {
+      font-size: 0.85rem; 
+      margin-bottom: 15px; 
+      padding-left: 5px; 
+      display: flex; 
+      align-items: flex-start; 
+      gap: 8px; 
+      flex-wrap: wrap;
+      text-align: left;
+    }
+    .meta-data-text {
+      line-height: 1.5;
+    }
+
+    /* 리뷰 내역 */
     .reviews-wrapper {
-      margin-top: 15px;
+      margin-top: 10px;
     }
 
     .code-log-container {
@@ -204,15 +234,15 @@
       border-left: 3px solid #007acc;
       padding: 12px;
       font-size: 0.8rem;
-      margin-bottom: 12px;
-      border-radius: 0 4px 4px 0;
+      margin-bottom: 10px;
+      text-align: left;
     }
-    .code-line { margin-bottom: 4px; word-break: break-all; white-space: pre-wrap; }
+    .code-line { margin-bottom: 4px; word-break: break-all; text-align: left; }
     
     .code-actions {
       display: flex;
       gap: 8px;
-      margin-top: 12px;
+      margin-top: 10px;
       padding-top: 8px;
       border-top: 1px solid #2d2d2d;
       justify-content: flex-end;
@@ -221,31 +251,14 @@
       background-color: #2d2d2d;
       color: #aaa;
       border: none;
-      padding: 6px 12px; /* 모바일 터치 영역 확장 */
+      padding: 3px 8px;
       font-size: 0.75rem;
       cursor: pointer;
       font-family: inherit;
-      border-radius: 3px;
     }
-
-    /* 미디어 쿼리: 태블릿 및 데스크탑 화면 (가로 폭이 넓어질 때) */
-    @media (min-width: 600px) {
-      body { padding: 20px; }
-      .page-title-input { font-size: 1.8rem; }
-      .review-form { padding: 25px; }
-      .form-row { flex-direction: row; gap: 20px; }
-      .btn { width: auto; padding: 10px 20px; }
-      
-      .filter-row { flex-direction: row; }
-      .filter-group { flex-direction: row; }
-      .filter-select { width: auto; }
-      .search-input { width: 200px; }
-      
-      .card-header { flex-direction: row; justify-content: space-between; align-items: center; }
-      .card-header .btn-sm { width: auto; }
-      
-      .code-log-container { padding: 15px; font-size: 0.85rem; }
-    }
+    .btn-code:hover { background-color: #3c3c3c; color: #fff; }
+    .btn-code.del:hover { background-color: #5a2323; color: #ff8888; }
+    .btn-code.mod:hover { background-color: #0e639c; color: #fff; }
   </style>
 </head>
 <body>
@@ -301,10 +314,8 @@
       <textarea id="reviewText" rows="4" placeholder="리뷰 내용을 기록하세요..."></textarea>
     </div>
 
-    <div style="display: flex; gap: 10px;">
-      <button class="btn" id="submitBtn" onclick="saveReview()">compile()</button>
-      <button class="btn" id="cancelBtn" onclick="resetForm()" style="display:none; background-color:#555;">abort()</button>
-    </div>
+    <button class="btn" id="submitBtn" onclick="saveReview()">compile()</button>
+    <button class="btn" id="cancelBtn" onclick="resetForm()" style="display:none; background-color:#555; margin-top:10px;">abort()</button>
   </div>
 
   <div class="filter-container">
@@ -330,9 +341,10 @@
           <option value="1">1</option>
         </select>
       </div>
-      <div class="filter-group">
-        <label>Search.title.match(/</label>
+      <div class="filter-group search-box">
+        <label>Search.match(/</label>
         <input type="text" id="searchTitle" class="search-input" placeholder="검색어 입력..." oninput="render()">
+        <label style="margin-bottom: 0;">/i)</label>
       </div>
     </div>
   </div>
@@ -476,6 +488,7 @@
     document.getElementById('submitBtn').innerText = 'appendReview()';
     document.getElementById('cancelBtn').style.display = 'inline-block';
     document.getElementById('reviewText').focus();
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
   function triggerEditReview(contentId, reviewId) {
@@ -494,6 +507,7 @@
 
     document.getElementById('submitBtn').innerText = 'updateReview()';
     document.getElementById('cancelBtn').style.display = 'inline-block';
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
   function triggerEditMeta(contentId) {
@@ -518,6 +532,7 @@
     
     document.getElementById('submitBtn').innerText = 'updateMetaInfo()';
     document.getElementById('cancelBtn').style.display = 'inline-block';
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
   function deleteReview(contentId, reviewId) {
@@ -551,7 +566,7 @@
     });
 
     if(filteredDb.length === 0) {
-      container.innerHTML = `<div class="code-comment" style="text-align:center; padding:40px;">// Warning: No logs match the current query.</div>`;
+      container.innerHTML = `<div class="code-comment" style="text-align:left; padding:20px;">// Warning: No logs match the current query.</div>`;
       return;
     }
 
@@ -582,12 +597,12 @@
             <button class="btn btn-sm" onclick="triggerAddReview(${content.id})">+ Add Log</button>
           </div>
           
-          <div class="code-line" style="font-size:0.85rem; margin-bottom:15px; padding-left: 5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-            <div>
+          <div class="meta-info-row">
+            <div class="meta-data-text">
               <span class="code-key">score</span>: <span class="code-number">${content.rating}</span>, 
               ${content.favCharacter ? `<span class="code-key">fav_char</span>: <span class="code-string">"${content.favCharacter}"</span>` : ''}
             </div>
-            <button class="btn-code" style="font-size: 0.7rem; padding: 2px 6px; background-color:#3c3c3c;" onclick="triggerEditMeta(${content.id})">MOD</button>
+            <button class="btn-code mod" style="font-size: 0.7rem; padding: 1px 6px;" onclick="triggerEditMeta(${content.id})">MOD</button>
           </div>
 
           <div class="reviews-wrapper">
