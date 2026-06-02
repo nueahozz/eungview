@@ -341,14 +341,11 @@
 </div>
 
 <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  // 10.12.0 버전으로 통일하고 Firestore 필수 함수들을 정상적으로 추가함
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  // 내 파이어베이스 정보 고정함
   const firebaseConfig = {
     apiKey: "AIzaSyAQdepCMLBffqjEhAvWM4NclP1P80MiL5M",
     authDomain: "eungview-5e3f2.firebaseapp.com",
@@ -514,18 +511,21 @@
     filteredDb.forEach(content => {
       let reviewItemsHTML = '';
       
-      content.reviews.forEach((rev, idx) => {
-        reviewItemsHTML += `
-          <div class="code-log-container">
-            <div class="code-line"><span class="code-comment">// Index: ${idx} | ${rev.date}</span></div>
-            <div class="code-line"><span class="code-key">log</span>: <span class="code-string">"${rev.text.replace(/\n/g, '\\n')}"</span></div>
-            <div class="code-actions">
-              <button class="btn-code action-edit" data-cid="${content.id}" data-rid="${rev.id}">Edit</button>
-              <button class="btn-code del action-drop" data-cid="${content.id}" data-rid="${rev.id}">Drop</button>
+      // content.reviews가 배열인지 안전장치 추가
+      if (content.reviews && Array.isArray(content.reviews)) {
+        content.reviews.forEach((rev, idx) => {
+          reviewItemsHTML += `
+            <div class="code-log-container">
+              <div class="code-line"><span class="code-comment">// Index: ${idx} | ${rev.date}</span></div>
+              <div class="code-line"><span class="code-key">log</span>: <span class="code-string">"${rev.text.replace(/\n/g, '\\n')}"</span></div>
+              <div class="code-actions">
+                <button class="btn-code action-edit" data-cid="${content.id}" data-rid="${rev.id}">Edit</button>
+                <button class="btn-code del action-drop" data-cid="${content.id}" data-rid="${rev.id}">Drop</button>
+              </div>
             </div>
-          </div>
-        `;
-      });
+          `;
+        });
+      }
 
       container.innerHTML += `
         <div class="content-card">
