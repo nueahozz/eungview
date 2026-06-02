@@ -15,7 +15,7 @@
       background-color: #1e1e1e;
       color: #d4d4d4;
       margin: 0;
-      padding: 15px; /* 모바일 여백 최적화 */
+      padding: 15px;
       letter-spacing: -0.3px;
       line-height: 1.6;
     }
@@ -32,7 +32,7 @@
 
     .page-title-input {
       font-family: inherit;
-      font-size: 1.6rem; /* 모바일 가독성을 위해 살짝 축소 */
+      font-size: 1.6rem;
       font-weight: 700;
       border: none;
       background: transparent;
@@ -55,14 +55,13 @@
     /* 입력 폼 스타일 */
     .review-form {
       background-color: #252526;
-      padding: 15px; /* 패딩 축소 */
+      padding: 15px;
       margin-bottom: 25px;
       border-radius: 4px;
     }
 
     .form-group { margin-bottom: 15px; }
     
-    /* 기본 모바일 레이아웃: 세로 정렬 */
     .form-row { 
       display: flex; 
       flex-direction: column; 
@@ -95,8 +94,8 @@
     /* 별점 스타일 */
     .star-rating {
       display: flex;
-      gap: 8px; /* 터치 영역 확보 */
-      font-size: 1.5rem; /* 모바일에서 누르기 편하게 크기 확대 */
+      gap: 8px;
+      font-size: 1.5rem;
       padding: 5px 0;
     }
     .star { cursor: pointer; color: #555; }
@@ -104,7 +103,7 @@
 
     /* 버튼 스타일 */
     .btn {
-      width: 100%; /* 모바일에서 누르기 편하게 전체 너비 적용 */
+      width: 100%;
       background-color: #007acc;
       border: none;
       color: #ffffff;
@@ -137,12 +136,12 @@
     }
     .filter-row {
       display: flex;
-      flex-direction: column; /* 세로 정렬 */
+      flex-direction: column;
       gap: 12px;
     }
     .filter-group {
       display: flex;
-      flex-direction: column; /* 라벨과 셀렉트 박스 세로 배치 */
+      flex-direction: column;
       gap: 6px;
       font-size: 0.85rem;
     }
@@ -164,7 +163,7 @@
     }
 
     /* 하이라이팅 색상 */
-    .code-comment { color: #6a9955; word-break: break-all; }
+    .code-comment { color: #6a9955; word-break: break-all; text-align: left; }
     .code-keyword { color: #569cd6; }
     .code-key { color: #9cdcfe; }
     .code-string { color: #ce9178; }
@@ -177,26 +176,58 @@
       padding: 15px;
       margin-bottom: 20px;
       border-radius: 4px;
+      text-align: left; /* 카드 안 모든 요소 왼쪽 정렬 고정 */
     }
 
     .card-header {
       display: flex;
-      flex-direction: column; /* 모바일에서 타이틀과 버튼 세로 배치 */
+      flex-direction: column;
       align-items: flex-start;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 15px;
-      padding-bottom: 10px;
+      padding-bottom: 12px;
       border-bottom: 1px solid #3c3c3c;
+      text-align: left;
     }
     .card-header .btn-sm {
-      width: 100%; /* 모바일에서 추가 버튼 너비 확장 */
+      width: 100%;
       text-align: center;
     }
 
-    .content-title { font-size: 1.1rem; margin: 0; font-weight: bold; color: #ffffff; word-break: break-all; }
+    .class-definition {
+      text-align: left;
+      width: 100%;
+    }
+
+    .content-title { 
+      font-size: 1.1rem; 
+      margin: 5px 0 5px 15px; /* 주술회전 타이틀 들여쓰기 적용 */
+      font-weight: bold; 
+      color: #ffffff; 
+      word-break: break-all;
+      display: block;
+    }
+    
+    .class-close {
+      margin-left: 0;
+      display: block;
+    }
 
     .reviews-wrapper {
       margin-top: 15px;
+      text-align: left;
+    }
+
+    .meta-info-line {
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+      padding-left: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      text-align: left;
+      justify-content: flex-start; /* 모바일에서 왼쪽 정렬 강제 */
     }
 
     .code-log-container {
@@ -206,8 +237,9 @@
       font-size: 0.8rem;
       margin-bottom: 12px;
       border-radius: 0 4px 4px 0;
+      text-align: left;
     }
-    .code-line { margin-bottom: 4px; word-break: break-all; white-space: pre-wrap; }
+    .code-line { margin-bottom: 4px; word-break: break-all; white-space: pre-wrap; text-align: left; }
     
     .code-actions {
       display: flex;
@@ -221,14 +253,14 @@
       background-color: #2d2d2d;
       color: #aaa;
       border: none;
-      padding: 6px 12px; /* 모바일 터치 영역 확장 */
+      padding: 6px 12px;
       font-size: 0.75rem;
       cursor: pointer;
       font-family: inherit;
       border-radius: 3px;
     }
 
-    /* 미디어 쿼리: 태블릿 및 데스크탑 화면 (가로 폭이 넓어질 때) */
+    /* 미디어 쿼리: 데스크탑 화면 폭 */
     @media (min-width: 600px) {
       body { padding: 20px; }
       .page-title-input { font-size: 1.8rem; }
@@ -341,11 +373,9 @@
 </div>
 
 <script type="module">
-  // 10.12.0 버전으로 통일하고 Firestore 필수 함수들을 정상적으로 추가함
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // 내 파이어베이스 정보 고정함
   const firebaseConfig = {
     apiKey: "AIzaSyAQdepCMLBffqjEhAvWM4NclP1P80MiL5M",
     authDomain: "eungview-5e3f2.firebaseapp.com",
@@ -356,14 +386,12 @@
     measurementId: "G-TLPNZ1DXN2"
   };
 
-  // Firebase 및 Firestore 초기화
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
   let currentRating = 0;
   let cachedData = [];
 
-  // 데이터 실시간 감지
   onSnapshot(collection(db, "review_archive_v5"), (snapshot) => {
     cachedData = [];
     snapshot.forEach((doc) => {
@@ -373,19 +401,16 @@
     render();
   });
 
-  // 상단 메인 페이지 타이틀 실시간 연동
   onSnapshot(doc(db, "config", "page_meta"), (docSnap) => {
     if (docSnap.exists()) {
       document.getElementById('pageTitle').value = docSnap.data().title || "LOCAL DEV ARCHIVE";
     }
   });
 
-  // 타이틀 입력 시 DB 즉시 저장
   document.getElementById('pageTitle').addEventListener('input', async (e) => {
     await setDoc(doc(db, "config", "page_meta"), { title: e.target.value }, { merge: true });
   });
 
-  // 별점 세팅
   document.querySelectorAll('#starRating .star').forEach(star => {
     star.addEventListener('click', (e) => {
       currentRating = parseInt(e.target.dataset.value);
@@ -399,7 +424,6 @@
     });
   }
 
-  // 데이터 저장 및 수정
   async function saveReview() {
     const category = document.getElementById('category').value;
     const title = document.getElementById('title').value.trim();
@@ -487,7 +511,6 @@
     document.getElementById('cancelBtn').style.display = 'none';
   }
 
-  // 화면 렌더링
   function render() {
     const container = document.getElementById('archiveList');
     container.innerHTML = '';
@@ -511,7 +534,6 @@
     filteredDb.forEach(content => {
       let reviewItemsHTML = '';
       
-      // content.reviews가 배열인지 안전장치 추가
       if (content.reviews && Array.isArray(content.reviews)) {
         content.reviews.forEach((rev, idx) => {
           reviewItemsHTML += `
@@ -530,15 +552,15 @@
       container.innerHTML += `
         <div class="content-card">
           <div class="card-header">
-            <div class="code-line">
+            <div class="class-definition">
               <span class="code-keyword">class</span> <span class="code-class">${content.category}</span> {
                 <span class="content-title">"${content.title}"</span>
-              }
+              <span class="class-close">}</span>
             </div>
             <button class="btn btn-sm action-add" data-cid="${content.id}">+ Add Log</button>
           </div>
           
-          <div class="code-line" style="font-size:0.85rem; margin-bottom:15px; padding-left: 5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <div class="meta-info-line">
             <div>
               <span class="code-key">score</span>: <span class="code-number">${content.rating}</span>, 
               ${content.favCharacter ? `<span class="code-key">fav_char</span>: <span class="code-string">"${content.favCharacter}"</span>` : ''}
