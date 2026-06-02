@@ -15,7 +15,7 @@
       background-color: #1e1e1e;
       color: #d4d4d4;
       margin: 0;
-      padding: 15px; /* 모바일 대응 패딩 축소 */
+      padding: 15px; /* 모바일 여백 최적화 */
       letter-spacing: -0.3px;
       line-height: 1.6;
     }
@@ -32,7 +32,7 @@
 
     .page-title-input {
       font-family: inherit;
-      font-size: 1.6rem;
+      font-size: 1.6rem; /* 모바일 가독성을 위해 살짝 축소 */
       font-weight: 700;
       border: none;
       background: transparent;
@@ -55,16 +55,18 @@
     /* 입력 폼 스타일 */
     .review-form {
       background-color: #252526;
-      padding: 20px;
+      padding: 15px; /* 패딩 축소 */
       margin-bottom: 25px;
       border-radius: 4px;
     }
 
     .form-group { margin-bottom: 15px; }
-    .form-row { display: flex; flex-direction: column; gap: 0; } /* 모바일 기본 세로 배치 */
     
-    @media (min-width: 600px) {
-      .form-row { flex-direction: row; gap: 20px; }
+    /* 기본 모바일 레이아웃: 세로 정렬 */
+    .form-row { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 0; 
     }
 
     label {
@@ -82,8 +84,7 @@
       padding: 10px;
       font-family: inherit;
       font-size: 0.9rem;
-      border-radius: 0;
-      -webkit-appearance: none; /* iOS 기본 스타일 제거 */
+      border-radius: 4px;
     }
 
     input:focus, select:focus, textarea:focus {
@@ -94,28 +95,27 @@
     /* 별점 스타일 */
     .star-rating {
       display: flex;
-      gap: 5px;
-      font-size: 1.3rem;
-      margin-bottom: 10px;
+      gap: 8px; /* 터치 영역 확보 */
+      font-size: 1.5rem; /* 모바일에서 누르기 편하게 크기 확대 */
+      padding: 5px 0;
     }
     .star { cursor: pointer; color: #555; }
     .star.active { color: #dcdcaa; }
 
     /* 버튼 스타일 */
     .btn {
+      width: 100%; /* 모바일에서 누르기 편하게 전체 너비 적용 */
       background-color: #007acc;
       border: none;
       color: #ffffff;
-      padding: 12px 20px;
+      padding: 12px;
       cursor: pointer;
       font-family: inherit;
       font-weight: bold;
-      width: 100%; /* 모바일에서 터치하기 쉽게 풀사이즈 */
+      border-radius: 4px;
+      font-size: 0.95rem;
     }
-    
-    @media (min-width: 600px) {
-      .btn { width: auto; }
-    }
+    .btn:hover { background-color: #0062a3; }
     
     .btn-sm {
       padding: 6px 12px;
@@ -125,10 +125,10 @@
       border: none;
       cursor: pointer;
       font-family: inherit;
+      border-radius: 4px;
     }
-    .btn-sm:hover { background-color: #4e4e4e; color: #fff; }
 
-    /* 필터 제어 영역 */
+    /* 필터 및 검색 제어 영역 */
     .filter-container {
       background-color: #252526;
       padding: 15px;
@@ -137,39 +137,34 @@
     }
     .filter-row {
       display: flex;
-      flex-direction: column;
+      flex-direction: column; /* 세로 정렬 */
       gap: 12px;
-    }
-    @media (min-width: 600px) {
-      .filter-row { flex-direction: row; align-items: center; }
     }
     .filter-group {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      flex-direction: column; /* 라벨과 셀렉트 박스 세로 배치 */
+      gap: 6px;
       font-size: 0.85rem;
     }
     .filter-group label {
       color: #569cd6;
-      margin-bottom: 0;
-      white-space: nowrap;
     }
     .filter-select, .search-input {
       background-color: #1e1e1e;
       border: 1px solid #3c3c3c;
       color: #d4d4d4;
-      padding: 6px 8px;
+      padding: 8px;
       font-family: inherit;
-      flex: 1;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      width: 100%;
     }
-    @media (min-width: 600px) {
-      .filter-select { flex: none; }
-      .search-input { width: 200px; }
-      .filter-group.search-box { margin-left: auto; }
+    .search-input {
+      color: #ce9178;
     }
 
-    /* 코드 블록 하이라이팅 태그 */
-    .code-comment { color: #6a9955; }
+    /* 하이라이팅 색상 */
+    .code-comment { color: #6a9955; word-break: break-all; }
     .code-keyword { color: #569cd6; }
     .code-key { color: #9cdcfe; }
     .code-string { color: #ce9178; }
@@ -186,47 +181,22 @@
 
     .card-header {
       display: flex;
-      flex-direction: column;
+      flex-direction: column; /* 모바일에서 타이틀과 버튼 세로 배치 */
+      align-items: flex-start;
       gap: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
       padding-bottom: 10px;
       border-bottom: 1px solid #3c3c3c;
     }
-    @media (min-width: 600px) {
-      .card-header { flex-direction: row; justify-content: space-between; align-items: center; }
+    .card-header .btn-sm {
+      width: 100%; /* 모바일에서 추가 버튼 너비 확장 */
+      text-align: center;
     }
 
-    .card-header .code-line {
-      text-align: left; /* 좌측 정렬 보장 */
-    }
+    .content-title { font-size: 1.1rem; margin: 0; font-weight: bold; color: #ffffff; word-break: break-all; }
 
-    .content-title { 
-      font-size: 1.15rem; 
-      margin: 0; 
-      font-weight: bold; 
-      color: #ffffff;
-      display: block;
-      margin-top: 4px;
-    }
-
-    /* 스코어, 최애캐 영역 모바일 정렬 수정 */
-    .meta-info-row {
-      font-size: 0.85rem; 
-      margin-bottom: 15px; 
-      padding-left: 5px; 
-      display: flex; 
-      align-items: flex-start; 
-      gap: 8px; 
-      flex-wrap: wrap;
-      text-align: left;
-    }
-    .meta-data-text {
-      line-height: 1.5;
-    }
-
-    /* 리뷰 내역 */
     .reviews-wrapper {
-      margin-top: 10px;
+      margin-top: 15px;
     }
 
     .code-log-container {
@@ -234,15 +204,15 @@
       border-left: 3px solid #007acc;
       padding: 12px;
       font-size: 0.8rem;
-      margin-bottom: 10px;
-      text-align: left;
+      margin-bottom: 12px;
+      border-radius: 0 4px 4px 0;
     }
-    .code-line { margin-bottom: 4px; word-break: break-all; text-align: left; }
+    .code-line { margin-bottom: 4px; word-break: break-all; white-space: pre-wrap; }
     
     .code-actions {
       display: flex;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 12px;
       padding-top: 8px;
       border-top: 1px solid #2d2d2d;
       justify-content: flex-end;
@@ -251,14 +221,31 @@
       background-color: #2d2d2d;
       color: #aaa;
       border: none;
-      padding: 3px 8px;
+      padding: 6px 12px; /* 모바일 터치 영역 확장 */
       font-size: 0.75rem;
       cursor: pointer;
       font-family: inherit;
+      border-radius: 3px;
     }
-    .btn-code:hover { background-color: #3c3c3c; color: #fff; }
-    .btn-code.del:hover { background-color: #5a2323; color: #ff8888; }
-    .btn-code.mod:hover { background-color: #0e639c; color: #fff; }
+
+    /* 미디어 쿼리: 태블릿 및 데스크탑 화면 (가로 폭이 넓어질 때) */
+    @media (min-width: 600px) {
+      body { padding: 20px; }
+      .page-title-input { font-size: 1.8rem; }
+      .review-form { padding: 25px; }
+      .form-row { flex-direction: row; gap: 20px; }
+      .btn { width: auto; padding: 10px 20px; }
+      
+      .filter-row { flex-direction: row; }
+      .filter-group { flex-direction: row; }
+      .filter-select { width: auto; }
+      .search-input { width: 200px; }
+      
+      .card-header { flex-direction: row; justify-content: space-between; align-items: center; }
+      .card-header .btn-sm { width: auto; }
+      
+      .code-log-container { padding: 15px; font-size: 0.85rem; }
+    }
   </style>
 </head>
 <body>
@@ -266,7 +253,7 @@
 <div class="container">
   <div class="page-header-container">
     <div class="title-input-wrapper">
-      <input type="text" id="pageTitle" class="page-title-input" value="LOCAL DEV ARCHIVE" oninput="savePageTitle()">
+      <input type="text" id="pageTitle" class="page-title-input" value="LOCAL DEV ARCHIVE">
     </div>
     <div class="page-subtitle">// System.log("체계적인 콘텐츠 로그 및 다중 리뷰 기록 시스템 가동 중...");</div>
   </div>
@@ -314,15 +301,17 @@
       <textarea id="reviewText" rows="4" placeholder="리뷰 내용을 기록하세요..."></textarea>
     </div>
 
-    <button class="btn" id="submitBtn" onclick="saveReview()">compile()</button>
-    <button class="btn" id="cancelBtn" onclick="resetForm()" style="display:none; background-color:#555; margin-top:10px;">abort()</button>
+    <div style="display: flex; gap: 10px;">
+      <button class="btn" id="submitBtn">compile()</button>
+      <button class="btn" id="cancelBtn" style="display:none; background-color:#555;">abort()</button>
+    </div>
   </div>
 
   <div class="filter-container">
     <div class="filter-row">
       <div class="filter-group">
         <label>Filter.category =</label>
-        <select id="filterCategory" class="filter-select" onchange="render()">
+        <select id="filterCategory" class="filter-select">
           <option value="ALL">"ALL"</option>
           <option value="영화">"MOVIE"</option>
           <option value="만화">"COMIC"</option>
@@ -332,7 +321,7 @@
       </div>
       <div class="filter-group">
         <label>Filter.score ===</label>
-        <select id="filterRating" class="filter-select" onchange="render()">
+        <select id="filterRating" class="filter-select">
           <option value="ALL">"ALL"</option>
           <option value="5">5</option>
           <option value="4">4</option>
@@ -341,10 +330,9 @@
           <option value="1">1</option>
         </select>
       </div>
-      <div class="filter-group search-box">
-        <label>Search.match(/</label>
-        <input type="text" id="searchTitle" class="search-input" placeholder="검색어 입력..." oninput="render()">
-        <label style="margin-bottom: 0;">/i)</label>
+      <div class="filter-group">
+        <label>Search.title.match(/</label>
+        <input type="text" id="searchTitle" class="search-input" placeholder="검색어 입력...">
       </div>
     </div>
   </div>
@@ -352,17 +340,55 @@
   <div id="archiveList"></div>
 </div>
 
-<script>
-  let db = JSON.parse(localStorage.getItem('review_archive_v5')) || [];
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAQdepCMLBffqjEhAvWM4NclP1P80MiL5M",
+    authDomain: "eungview-5e3f2.firebaseapp.com",
+    projectId: "eungview-5e3f2",
+    storageBucket: "eungview-5e3f2.firebasestorage.app",
+    messagingSenderId: "513419971849",
+    appId: "1:513419971849:web:d20dc171f9e5fdad2e97d8",
+    measurementId: "G-TLPNZ1DXN2"
+  };
+
+  // Firebase 및 Firestore 초기화
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
   let currentRating = 0;
+  let cachedData = [];
 
-  if(localStorage.getItem('page_title')) {
-    document.getElementById('pageTitle').value = localStorage.getItem('page_title');
-  }
-  function savePageTitle() {
-    localStorage.setItem('page_title', document.getElementById('pageTitle').value);
-  }
+  // 데이터 실시간 감지
+  onSnapshot(collection(db, "review_archive_v5"), (snapshot) => {
+    cachedData = [];
+    snapshot.forEach((doc) => {
+      cachedData.push({ id: doc.id, ...doc.data() });
+    });
+    cachedData.sort((a, b) => b.createdAt - a.createdAt);
+    render();
+  });
 
+  // 상단 메인 페이지 타이틀 실시간 연동
+  onSnapshot(doc(db, "config", "page_meta"), (docSnap) => {
+    if (docSnap.exists()) {
+      document.getElementById('pageTitle').value = docSnap.data().title || "LOCAL DEV ARCHIVE";
+    }
+  });
+
+  // 타이틀 입력 시 DB 즉시 저장
+  document.getElementById('pageTitle').addEventListener('input', async (e) => {
+    await setDoc(doc(db, "config", "page_meta"), { title: e.target.value }, { merge: true });
+  });
+
+  // 별점 세팅
   document.querySelectorAll('#starRating .star').forEach(star => {
     star.addEventListener('click', (e) => {
       currentRating = parseInt(e.target.dataset.value);
@@ -376,7 +402,8 @@
     });
   }
 
-  function saveReview() {
+  // 데이터 저장 및 수정
+  async function saveReview() {
     const category = document.getElementById('category').value;
     const title = document.getElementById('title').value.trim();
     const favCharacter = document.getElementById('favCharacter').value.trim();
@@ -385,67 +412,59 @@
     const editReviewId = document.getElementById('editReviewId').value;
     const metaEditMode = document.getElementById('metaEditMode').value === 'true';
 
-    if(!title) {
-      alert("TITLE 항목을 입력해주세요.");
-      return;
-    }
+    if(!title) { alert("TITLE 항목을 입력해주세요."); return; }
+    if(!metaEditMode && !text) { alert("REVIEW 항목을 입력해주세요."); return; }
+    if(!editContentId && currentRating === 0) { alert("SCORE(별점)를 선택해주세요."); return; }
 
-    if(!metaEditMode && !text) {
-      alert("REVIEW 항목을 입력해주세요.");
-      return;
-    }
-
-    if(!editContentId && currentRating === 0) {
-      alert("SCORE(별점)를 선택해주세요.");
-      return;
-    }
-
-    if (metaEditMode && editContentId) {
-      const content = db.find(c => c.id == editContentId);
-      if (content) {
-        content.rating = currentRating;
-        content.favCharacter = favCharacter;
-      }
-    } else if (editContentId && editReviewId) {
-      const content = db.find(c => c.id == editContentId);
-      if (content) {
-        content.category = category;
-        content.title = title;
-        content.favCharacter = favCharacter;
-        const rev = content.reviews.find(r => r.id == editReviewId);
-        if (rev) {
-          rev.text = text;
-          rev.date = new Date().toLocaleString();
+    try {
+      if (metaEditMode && editContentId) {
+        const docRef = doc(db, "review_archive_v5", editContentId);
+        await updateDoc(docRef, {
+          rating: currentRating,
+          favCharacter: favCharacter
+        });
+      } else if (editContentId && editReviewId) {
+        const docRef = doc(db, "review_archive_v5", editContentId);
+        const content = cachedData.find(c => c.id === editContentId);
+        if (content) {
+          const updatedReviews = content.reviews.map(r => {
+            if (r.id == editReviewId) {
+              return { ...r, text: text, date: new Date().toLocaleString() };
+            }
+            return r;
+          });
+          await updateDoc(docRef, { reviews: updatedReviews });
         }
-      }
-    } else if (editContentId && !editReviewId) {
-      const content = db.find(c => c.id == editContentId);
-      if (content) {
-        content.reviews.push({
-          id: Date.now(),
-          text: text,
-          date: new Date().toLocaleString()
+      } else if (editContentId && !editReviewId) {
+        const docRef = doc(db, "review_archive_v5", editContentId);
+        const content = cachedData.find(c => c.id === editContentId);
+        if (content) {
+          const newReviews = [...content.reviews, {
+            id: String(Date.now()),
+            text: text,
+            date: new Date().toLocaleString()
+          }];
+          await updateDoc(docRef, { reviews: newReviews });
+        }
+      } else {
+        await addDoc(collection(db, "review_archive_v5"), {
+          category,
+          title,
+          rating: currentRating,
+          favCharacter,
+          createdAt: Date.now(),
+          reviews: [{
+            id: String(Date.now() + 1),
+            text: text,
+            date: new Date().toLocaleString()
+          }]
         });
       }
-    } else {
-      const newContent = {
-        id: Date.now(),
-        category,
-        title,
-        rating: currentRating,
-        favCharacter,
-        reviews: [{
-          id: Date.now() + 1,
-          text: text,
-          date: new Date().toLocaleString()
-        }]
-      };
-      db.push(newContent);
+      resetForm();
+    } catch (error) {
+      console.error(error);
+      alert("Firebase 서버와 동기화하지 못했습니다.");
     }
-
-    localStorage.setItem('review_archive_v5', JSON.stringify(db));
-    resetForm();
-    render();
   }
 
   function resetForm() {
@@ -471,85 +490,7 @@
     document.getElementById('cancelBtn').style.display = 'none';
   }
 
-  function triggerAddReview(contentId) {
-    resetForm();
-    const content = db.find(c => c.id == contentId);
-    
-    document.getElementById('editContentId').value = contentId;
-    document.getElementById('category').value = content.category;
-    document.getElementById('category').disabled = true;
-    document.getElementById('title').value = content.title;
-    document.getElementById('title').disabled = true;
-    document.getElementById('favCharacter').value = content.favCharacter;
-    
-    document.getElementById('scoreFormGroup').style.display = 'none';
-    document.getElementById('favCharFormGroup').style.display = 'none';
-    
-    document.getElementById('submitBtn').innerText = 'appendReview()';
-    document.getElementById('cancelBtn').style.display = 'inline-block';
-    document.getElementById('reviewText').focus();
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }
-
-  function triggerEditReview(contentId, reviewId) {
-    const content = db.find(c => c.id == contentId);
-    const rev = content.reviews.find(r => r.id == reviewId);
-    
-    document.getElementById('editContentId').value = contentId;
-    document.getElementById('editReviewId').value = reviewId;
-    document.getElementById('category').value = content.category;
-    document.getElementById('title').value = content.title;
-    document.getElementById('favCharacter').value = content.favCharacter;
-    document.getElementById('reviewText').value = rev.text;
-    
-    document.getElementById('scoreFormGroup').style.display = 'none';
-    document.getElementById('favCharFormGroup').style.display = 'none';
-
-    document.getElementById('submitBtn').innerText = 'updateReview()';
-    document.getElementById('cancelBtn').style.display = 'inline-block';
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }
-
-  function triggerEditMeta(contentId) {
-    resetForm();
-    const content = db.find(c => c.id == contentId);
-    
-    document.getElementById('editContentId').value = contentId;
-    document.getElementById('metaEditMode').value = 'true';
-    
-    document.getElementById('category').value = content.category;
-    document.getElementById('category').disabled = true;
-    document.getElementById('title').value = content.title;
-    document.getElementById('title').disabled = true;
-    document.getElementById('favCharacter').value = content.favCharacter;
-    
-    currentRating = content.rating;
-    updateStars('starRating', currentRating);
-
-    document.getElementById('reviewTextFormGroup').style.display = 'none';
-    document.getElementById('lblCategory').innerText = '/* 고정 */ const category =';
-    document.getElementById('lblTitle').innerText = '/* 고정 */ const title =';
-    
-    document.getElementById('submitBtn').innerText = 'updateMetaInfo()';
-    document.getElementById('cancelBtn').style.display = 'inline-block';
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }
-
-  function deleteReview(contentId, reviewId) {
-    if(!confirm("해당 리뷰 로그를 삭제하시겠습니까?")) return;
-    
-    const contentIndex = db.findIndex(c => c.id == contentId);
-    if(contentIndex !== -1) {
-      db[contentIndex].reviews = db[contentIndex].reviews.filter(r => r.id != reviewId);
-      if(db[contentIndex].reviews.length === 0) {
-        db.splice(contentIndex, 1);
-      }
-    }
-    
-    localStorage.setItem('review_archive_v5', JSON.stringify(db));
-    render();
-  }
-
+  // 화면 렌더링
   function render() {
     const container = document.getElementById('archiveList');
     container.innerHTML = '';
@@ -558,7 +499,7 @@
     const filterRat = document.getElementById('filterRating').value;
     const searchKeyword = document.getElementById('searchTitle').value.trim().toLowerCase();
 
-    const filteredDb = db.filter(content => {
+    const filteredDb = cachedData.filter(content => {
       const matchCat = (filterCat === 'ALL' || content.category === filterCat);
       const matchRat = (filterRat === 'ALL' || content.rating === parseInt(filterRat));
       const matchSearch = (!searchKeyword || content.title.toLowerCase().includes(searchKeyword));
@@ -566,7 +507,7 @@
     });
 
     if(filteredDb.length === 0) {
-      container.innerHTML = `<div class="code-comment" style="text-align:left; padding:20px;">// Warning: No logs match the current query.</div>`;
+      container.innerHTML = `<div class="code-comment" style="text-align:center; padding:40px;">// Warning: No logs match the current query.</div>`;
       return;
     }
 
@@ -579,8 +520,8 @@
             <div class="code-line"><span class="code-comment">// Index: ${idx} | ${rev.date}</span></div>
             <div class="code-line"><span class="code-key">log</span>: <span class="code-string">"${rev.text.replace(/\n/g, '\\n')}"</span></div>
             <div class="code-actions">
-              <button class="btn-code" onclick="triggerEditReview(${content.id}, ${rev.id})">Edit</button>
-              <button class="btn-code del" onclick="deleteReview(${content.id}, ${rev.id})">Drop</button>
+              <button class="btn-code action-edit" data-cid="${content.id}" data-rid="${rev.id}">Edit</button>
+              <button class="btn-code del action-drop" data-cid="${content.id}" data-rid="${rev.id}">Drop</button>
             </div>
           </div>
         `;
@@ -594,15 +535,15 @@
                 <span class="content-title">"${content.title}"</span>
               }
             </div>
-            <button class="btn btn-sm" onclick="triggerAddReview(${content.id})">+ Add Log</button>
+            <button class="btn btn-sm action-add" data-cid="${content.id}">+ Add Log</button>
           </div>
           
-          <div class="meta-info-row">
-            <div class="meta-data-text">
+          <div class="code-line" style="font-size:0.85rem; margin-bottom:15px; padding-left: 5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <div>
               <span class="code-key">score</span>: <span class="code-number">${content.rating}</span>, 
               ${content.favCharacter ? `<span class="code-key">fav_char</span>: <span class="code-string">"${content.favCharacter}"</span>` : ''}
             </div>
-            <button class="btn-code mod" style="font-size: 0.7rem; padding: 1px 6px;" onclick="triggerEditMeta(${content.id})">MOD</button>
+            <button class="btn-code action-mod" style="font-size: 0.7rem; padding: 2px 6px; background-color:#3c3c3c;" data-cid="${content.id}">MOD</button>
           </div>
 
           <div class="reviews-wrapper">
@@ -611,9 +552,110 @@
         </div>
       `;
     });
+
+    bindComponentEvents();
   }
 
-  render();
+  function bindComponentEvents() {
+    document.querySelectorAll('.action-add').forEach(btn => {
+      btn.onclick = () => {
+        const cid = btn.dataset.cid;
+        resetForm();
+        const content = cachedData.find(c => c.id === cid);
+        document.getElementById('editContentId').value = cid;
+        document.getElementById('category').value = content.category;
+        document.getElementById('category').disabled = true;
+        document.getElementById('title').value = content.title;
+        document.getElementById('title').disabled = true;
+        document.getElementById('favCharacter').value = content.favCharacter;
+        
+        document.getElementById('scoreFormGroup').style.display = 'none';
+        document.getElementById('favCharFormGroup').style.display = 'none';
+        
+        document.getElementById('submitBtn').innerText = 'appendReview()';
+        document.getElementById('cancelBtn').style.display = 'inline-block';
+        document.getElementById('reviewText').focus();
+      };
+    });
+
+    document.querySelectorAll('.action-edit').forEach(btn => {
+      btn.onclick = () => {
+        const cid = btn.dataset.cid;
+        const rid = btn.dataset.rid;
+        const content = cachedData.find(c => c.id === cid);
+        const rev = content.reviews.find(r => r.id == rid);
+        
+        document.getElementById('editContentId').value = cid;
+        document.getElementById('editReviewId').value = rid;
+        document.getElementById('category').value = content.category;
+        document.getElementById('title').value = content.title;
+        document.getElementById('favCharacter').value = content.favCharacter;
+        document.getElementById('reviewText').value = rev.text;
+        
+        document.getElementById('scoreFormGroup').style.display = 'none';
+        document.getElementById('favCharFormGroup').style.display = 'none';
+
+        document.getElementById('submitBtn').innerText = 'updateReview()';
+        document.getElementById('cancelBtn').style.display = 'inline-block';
+      };
+    });
+
+    document.querySelectorAll('.action-mod').forEach(btn => {
+      btn.onclick = () => {
+        const cid = btn.dataset.cid;
+        resetForm();
+        const content = cachedData.find(c => c.id === cid);
+        
+        document.getElementById('editContentId').value = cid;
+        document.getElementById('metaEditMode').value = 'true';
+        document.getElementById('category').value = content.category;
+        document.getElementById('category').disabled = true;
+        document.getElementById('title').value = content.title;
+        document.getElementById('title').disabled = true;
+        document.getElementById('favCharacter').value = content.favCharacter;
+        
+        currentRating = content.rating;
+        updateStars('starRating', currentRating);
+
+        document.getElementById('reviewTextFormGroup').style.display = 'none';
+        document.getElementById('lblCategory').innerText = '/* 고정 */ const category =';
+        document.getElementById('lblTitle').innerText = '/* 고정 */ const title =';
+        
+        document.getElementById('submitBtn').innerText = 'updateMetaInfo()';
+        document.getElementById('cancelBtn').style.display = 'inline-block';
+      };
+    });
+
+    document.querySelectorAll('.action-drop').forEach(btn => {
+      btn.onclick = async () => {
+        const cid = btn.dataset.cid;
+        const rid = btn.dataset.rid;
+        if(!confirm("해당 리뷰 로그를 삭제하시겠습니까?")) return;
+        
+        try {
+          const docRef = doc(db, "review_archive_v5", cid);
+          const content = cachedData.find(c => c.id === cid);
+          if(content) {
+            const filteredReviews = content.reviews.filter(r => r.id != rid);
+            if(filteredReviews.length === 0) {
+              await deleteDoc(docRef);
+            } else {
+              await updateDoc(docRef, { reviews: filteredReviews });
+            }
+          }
+        } catch (error) {
+          alert("데이터 삭제 실패");
+        }
+      };
+    });
+  }
+
+  document.getElementById('filterCategory').addEventListener('change', render);
+  document.getElementById('filterRating').addEventListener('change', render);
+  document.getElementById('searchTitle').addEventListener('input', render);
+
+  document.getElementById('submitBtn').onclick = saveReview;
+  document.getElementById('cancelBtn').onclick = resetForm;
 </script>
 </body>
 </html>
